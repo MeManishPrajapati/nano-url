@@ -1,0 +1,28 @@
+{
+  "name": "nano-url",
+  "version": "1.0.0",
+  "description": "The project will provide nano urls for your large urls.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeManishPrajapati/nano-url.git"
+  },
+  "keywords": [
+    "nano-url"
+  ],
+  "author": "Manish Prajapati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MeManishPrajapati/nano-url/issues"
+  },
+  "homepage": "https://github.com/MeManishPrajapati/nano-url#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.3"
+  }
+}
