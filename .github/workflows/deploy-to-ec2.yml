@@ -28,7 +28,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/AWS_RSA_Key.pem $EC2_USER@$EC2_HOST << 'EOF'
           # Move to the nano-link directory
-          cd nano-link
+          cd nano-url
 
           # Stop the nano-link application
           pm2 stop nano-link || true  # Ignore error if not running
