@@ -1,0 +1,39 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH with AWS RSA Key
+      env:
+        AWS_RSA_KEY: ${{ secrets.AWS_RSA_KEY }}
+      run: |
+        echo "$AWS_RSA_KEY" > ~/.ssh/AWS_RSA_Key.pem
+        chmod 400 ~/.ssh/AWS_RSA_Key.pem
+
+    - name: Connect and Deploy to EC2
+      env:
+        EC2_HOST: ${{ secrets.EC2_HOST }}
+        EC2_USER: ${{ secrets.EC2_USER }}
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/AWS_RSA_Key.pem $EC2_USER@$EC2_HOST << 'EOF'
+          # Move to the nano-link directory
+          cd nano-link
+
+          # Stop the nano-link application
+          pm2 stop nano-link || true  # Ignore error if not running
+
+          # Pull the latest code from the main branch
+          git pull origin main
+
+          sudo sh run.server.sh
+        EOF
