@@ -17,6 +17,7 @@ jobs:
       env:
         AWS_RSA_KEY: ${{ secrets.AWS_RSA_KEY }}
       run: |
+        mkdir -p ~/.ssh
         echo "$AWS_RSA_KEY" > ~/.ssh/AWS_RSA_Key.pem
         chmod 400 ~/.ssh/AWS_RSA_Key.pem
 
