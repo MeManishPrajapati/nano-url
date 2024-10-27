@@ -1,4 +1,4 @@
-export PORT=80
+export PORT=8080
 
 # load mongo secrets in AWS from Secret manager
 SECRET_NAME="MongoDB"
