@@ -4,7 +4,7 @@ const connectDB = require("./config/db");
 const urlRoutes = require("./routes/url.routes");
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.get("/__healthz", (req, res) => {
     res.json({ success: true })
