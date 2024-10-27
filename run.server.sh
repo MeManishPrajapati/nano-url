@@ -1,3 +1,6 @@
+PM2_APP_NAME="nano-link"
+pm2 stop $PM2_APP_NAME
+
 export PORT=8080
 
 # load mongo secrets in AWS from Secret manager
@@ -19,4 +22,5 @@ else
     exit 1
 fi
 
-node index.js
+pm2 start index.js --name $PM2_APP_NAME
+pm2 save
